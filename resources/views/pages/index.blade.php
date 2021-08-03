@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title','カラオケ')
+@section('title','atorie - HOME')
 
 @section('content')
 <h1>TOPページ</h1>
