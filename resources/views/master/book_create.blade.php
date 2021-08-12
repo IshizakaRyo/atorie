@@ -21,10 +21,15 @@
             <input type="text" name="publisher">
         </div>
         <div>
-            <label for="category">カテゴリ</label>
-            <input type="text" name="category">
+            <label for="category_id">カテゴリ</label>
+            <select name="category_id">
+            @foreach ($categories as $category)
+                    <option value={{ $category['id'] }}>{{ $category['category_name'] }}</option>
+                
+            @endforeach
+            </select>
+            <div>
         </div>
-        <div>
             <label for="readed_date">読んだ日</label>
             <input type="date" name="readed_date">
         </div>
