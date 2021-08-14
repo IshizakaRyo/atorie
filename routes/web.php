@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,5 @@ use App\Http\Controllers\RecordController;
 |
 */
 
-Route::resource('/record', RecordController::class);
+Route::resource('/record/book', RecordController::class);
+Route::resource('/record/category', CategoryController::class);

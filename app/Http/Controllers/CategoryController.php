@@ -6,24 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 
-class RecordController extends Controller
+class CategoryController extends Controller
 {
-    public function index()
+       public function index()
     {
         return view('master.index');
     }
     public function create()
     {
-        $datas = Book::get()->all();
         $categories = Category::get()->all();
-        return view('master.book_create',compact('datas', 'categories'));
+        return view('master.category_create',compact('categories'));
     }
 
     public function store()
     {
         $inputs = \Request::all();
         // dd($inputs);
-        Book::create($inputs);
-        return redirect('record/book/create');
+        Category::create($inputs);
+        return redirect('record/category/create');
     }
 }
