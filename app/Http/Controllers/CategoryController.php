@@ -10,7 +10,6 @@ class CategoryController extends Controller
 {
        public function index()
     {
-        return view('master.index');
     }
     public function create()
     {
@@ -23,6 +22,6 @@ class CategoryController extends Controller
         $inputs = \Request::all();
         // dd($inputs);
         Category::create($inputs);
-        return redirect('record/category/create');
+        return redirect('master/category/create');
     }
 }
