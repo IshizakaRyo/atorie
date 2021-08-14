@@ -6,7 +6,7 @@
 <h1>TOPページ</h1>
 <p>This is TOP page.</p>
 
-    <form action="{{ route('category.store') }}" method="POST">
+    <form action="{{ route('book.store') }}" method="POST">
         @csrf
         <div>
             <label for="title">タイトル</label>
@@ -47,6 +47,6 @@
     </section>
 
     <div>
-        <a href={{ route('category.index') }}>マスタ一覧へ</a>
+        <a href={{ route('master.index') }}>マスタ一覧へ</a>
     </div>
 @endsection

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RecordController;
+use App\Http\Controllers\MasterController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -15,5 +16,6 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::resource('/record/book', RecordController::class);
-Route::resource('/record/category', CategoryController::class);
+Route::resource('master', MasterController::class)->only('index');
+Route::resource('/master/book', BookController::class);
+Route::resource('/master/category', CategoryController::class);

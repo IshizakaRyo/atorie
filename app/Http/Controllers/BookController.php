@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 
-class RecordController extends Controller
+class BookController extends Controller
 {
     public function index()
     {
-        return view('master.index');
     }
     public function create()
     {
@@ -24,6 +23,6 @@ class RecordController extends Controller
         $inputs = \Request::all();
         // dd($inputs);
         Book::create($inputs);
-        return redirect('record/book/create');
+        return redirect('master/book/create');
     }
 }

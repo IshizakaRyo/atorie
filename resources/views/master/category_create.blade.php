@@ -30,6 +30,6 @@
     </section>
 
     <div>
-        <a href={{ route('book.index') }}>マスタ一覧へ</a>
+        <a href={{ route('master.index') }}>マスタ一覧へ</a>
     </div>
 @endsection
