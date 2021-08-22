@@ -8,12 +8,28 @@
 
     <form action="{{ route('category.store') }}" method="POST">
         @csrf
+
+        <div class="errror">
+            @if ($errors->has('category_code'))
+                @foreach($errors->get('category_code') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
+        </div>
         <div>
             <label for="category_code">カテゴリコード</label>
             <input type="text" name="category_code">
         </div>
+
+        <div class="errror">
+            @if ($errors->has('category_name'))
+                @foreach($errors->get('category_name') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
+        </div>
         <div>
-            <label for="category_name">カテゴリネーム</label>
+            <label for="category_name">カテゴリ名</label>
             <input type="text" name="category_name">
         </div>
         <div>
@@ -28,14 +44,6 @@
             @endforeach
         </ul>
     </section>
-
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
 
     <div>
         <a href={{ route('master.index') }}>マスタ一覧へ</a>

@@ -8,17 +8,49 @@
 
     <form action="{{ route('book.store') }}" method="POST">
         @csrf
+
+        <div class="errror">
+            @if ($errors->has('title'))
+                @foreach($errors->get('title') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
+        </div>
         <div>
             <label for="title">タイトル</label>
             <input type="text" name="title">
+        </div>
+
+        <div class="errror">
+            @if ($errors->has('author'))
+                @foreach($errors->get('author') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
         </div>
         <div>
             <label for="author">著者</label>
             <input type="text" name="author">
         </div>
+
+        <div class="errror">
+            @if ($errors->has('publisher'))
+                @foreach($errors->get('publisher') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
+        </div>
         <div>
             <label for="publisher">出版社</label>
             <input type="text" name="publisher">
+        </div>
+
+        <div class="errror">
+            @if ($errors->has('category_id'))
+                @foreach($errors->get('category_id') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
         </div>
         <div>
             <label for="category_id">カテゴリ</label>
@@ -30,6 +62,15 @@
             </select>
             <div>
         </div>
+
+        <div class="errror">
+            @if ($errors->has('readed_date'))
+                @foreach($errors->get('readed_date') as $message)
+                    <li> {{ $message }} </li>
+                @endforeach
+            @endif
+        </div>
+        <div>
             <label for="readed_date">読んだ日</label>
             <input type="date" name="readed_date">
         </div>
