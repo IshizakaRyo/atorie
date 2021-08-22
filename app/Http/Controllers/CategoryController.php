@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
-       public function index()
+    public function index()
     {
     }
     public function create()
@@ -17,11 +18,10 @@ class CategoryController extends Controller
         return view('master.category_create',compact('categories'));
     }
 
-    public function store()
+    public function store(CategoryRequest $request)
     {
-        $inputs = \Request::all();
-        // dd($inputs);
-        Category::create($inputs);
+        $validated = $request->all();
+        Category::create($validated);
         return redirect('master/category/create');
     }
 }
