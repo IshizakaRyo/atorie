@@ -29,6 +29,14 @@
         </ul>
     </section>
 
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
     <div>
         <a href={{ route('master.index') }}>マスタ一覧へ</a>
     </div>
