@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
 {
@@ -18,11 +19,10 @@ class BookController extends Controller
         return view('master.book_create',compact('datas', 'categories'));
     }
 
-    public function store()
+    public function store(BookRequest $request)
     {
-        $inputs = \Request::all();
-        // dd($inputs);
-        Book::create($inputs);
+        $validated = $request->all();
+        Book::create($validated);
         return redirect('master/book/create');
     }
 }
