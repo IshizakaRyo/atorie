@@ -72,7 +72,7 @@
         </div>
         <div>
             <label for="readed_date">読んだ日</label>
-            <input type="date" name="readed_date">
+            <input id="today" type="date" name="readed_date">
         </div>
         <div>
             <input type="submit" value="送信">
@@ -99,5 +99,9 @@
 
     <div>
         <a href={{ route('master.index') }}>マスタ一覧へ</a>
+        <p>{{ asset('/css/style.css') }}</p>
+        <p>{{ asset('/js/book.js') }}</p>
     </div>
+    <script src="{{ asset('/js/book.js') }}"></script>
 @endsection
+
