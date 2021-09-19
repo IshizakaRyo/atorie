@@ -27,6 +27,7 @@ class BookRequest extends FormRequest
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'publisher' => 'required|string|max:255',
+            'image' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',
             'readed_date' => 'required|date',
         ];

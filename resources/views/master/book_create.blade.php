@@ -6,7 +6,7 @@
 <h1>TOPページ</h1>
 <p>This is TOP page.</p>
 
-    <form action="{{ route('book.store') }}" method="POST">
+    <form action="{{ route('book.store') }}" method="POST" enctype='multipart/form-data'>
         @csrf
 
         <div class="errror">
@@ -75,6 +75,11 @@
             <input id="today" type="date" name="readed_date">
         </div>
         <div>
+            <label for="image">画像</label>
+            <input id="image" type="file" name="image" accept="image/*"/><br /><br />
+            <img id="preview" width="130px">
+        </div>
+        <div>
             <input type="submit" value="送信">
         </div>
     </form>
@@ -82,7 +87,10 @@
     <section>
         <ul>
             @foreach ($datas as $data)
-            <li><a>{{ $data['title'] }}</a>  <a>{{ $data['author'] }}</a>  <a>{{ $data['publisher'] }}</a></li>
+            <li><a>{{ $data['title'] }}</a>  <a>{{ $data['author'] }}</a>  <a>{{ $data['publisher'] }}</a>
+                <p>{{ asset('public/storage/temp/'.$data['image']) }}</p>
+                <img width="100px" src={{ asset('public/storage/temp/'.$data['image']) }}/>
+            </li>
             @endforeach
         </ul>
     </section>
@@ -104,4 +112,3 @@
     </div>
     <script src="{{ asset('/js/book.js') }}"></script>
 @endsection
-

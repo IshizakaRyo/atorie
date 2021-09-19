@@ -21,7 +21,14 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
-        $validated = $request->all();
+        $validated = $request->except('image');
+        
+        $imagefile = $request->file('image');
+    
+        $temp_path = $imagefile->store('public/temp');
+        // dd($temp_path);
+        $validated['image'] = basename($temp_path);
+
         Book::create($validated);
         return redirect('master/book/create');
     }
