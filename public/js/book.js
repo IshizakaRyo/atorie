@@ -21,3 +21,18 @@
         
         document.getElementById("today").value = ymd;
     }
+
+    // 画像のプレビューを表示
+    var image = document.getElementById("image");
+    
+    image.addEventListener("change", function(){
+
+        var image_viw = document.getElementById("preview");
+
+        console.log(image.files[0].name);
+        //image_viw.src = image.files[0].name;
+        //NOTE:Fileオブジェクトを開放する
+        URL.revokeObjectURL(image_viw.src);
+        //FileオブジェクトをBlob URIスキームに変換してimg要素に読み込む
+        image_viw.src = URL.createObjectURL(image.files[0]);
+    });
