@@ -1,0 +1,19 @@
+.orderRecord {
+    /* background-color: bisque; */
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    width: 160px;
+    padding: 10px;
+
+}
+.orderNum {
+    text-align: center;
+    width: 32px;
+    /* background-color: blueviolet; */
+}
+.memberName {
+    /* background-color: aqua; */
+    width: 100px;
+    text-align: center;
+}
