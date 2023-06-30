@@ -9,7 +9,7 @@ use App\Models\GameDetail;
 
 class GameDetailService
 {
-    public function getExpectedOrderArray()
+    public function getExpectedOrderArray(int $game_option_id)
     {
         $expected_position = new ExpectedPosition();
         $mst_member = new MstMember();
@@ -17,8 +17,12 @@ class GameDetailService
 
         $return_expected_order = [];
 
-        $target_game_expected_batting_order_collection = ExpectedBattingOrder::where('game_detail_id', 1)->get();
-        $target_game_expected_position_colletion = ExpectedPosition::where('game_detail_id', 1)->get();
+        $target_game_expected_batting_order_collection = ExpectedBattingOrder::where('game_detail_id', $game_option_id)->get();
+        $target_game_expected_position_colletion = ExpectedPosition::where('game_detail_id', $game_option_id)->get();
+        // 該当試合の予想がゼロだったら空で返す
+        if (count($target_game_expected_batting_order_collection) === 0 || count($target_game_expected_position_colletion) === 0) {
+            return $return_expected_order;
+        }
 
         // 該当予想IDごとに予想打順と予想ポジションをまとめる
         foreach ($target_game_expected_batting_order_collection as $key => $target_game_expected_batting_order) {
@@ -45,6 +49,7 @@ class GameDetailService
             unset($arranged_collection['expected_position']['expectation_id']);
             unset($arranged_collection['expected_batting_order']['expectation_id']);
             unset($arranged_collection['expected_batting_order']['expectation_id']);
+            $return_expected_order[$key]['user_name'] = $arranged_collection['expected_batting_order']['user_name'];
             $member_array = $mst_member->whereIn('id', $arranged_collection['expected_position'])->get(['id', 'member_name', 'back_number'])->toArray();
             foreach ($member_array as $member) {
                 // 該当選手の打順を取得し、その打順をキーに選手情報を格納
@@ -60,14 +65,13 @@ class GameDetailService
                 $return_expected_order[$key][$batting_order_key]['position'] = $position_name;
             }
         }
-
         return $return_expected_order;
     }
 
-    public function getGameDetailArray (string $date): array
+    public function getGameDetailArray (string $dating): array
     {
         // game_detailテーブルのdatingカラムにフォーマットを合わせる
-        $date_for_search = substr_replace($date, '-', 4, 0);
+        $date_for_search = substr_replace($dating, '-', 4, 0);
         $date_for_search = substr_replace($date_for_search, '-', 7, 0);
 
         $game_detail = new GameDetail();

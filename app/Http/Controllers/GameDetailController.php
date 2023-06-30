@@ -19,7 +19,7 @@ class GameDetailController extends Controller
         $expected_batting_order = new ExpectedBattingOrder();
 
         $service = new GameDetailService();
-
+                
         $order_table_items = [
             1 => 'first_hitter',
             2 => 'secound_hitter',
@@ -34,35 +34,48 @@ class GameDetailController extends Controller
         ];
 
         // 試合詳細の取得
-        $date = $request->date;
-        $game_option = $service->getGameDetailArray($date);
+        $dating = $request->dating;
+        $game_option = $service->getGameDetailArray($dating);
         // 予想オーダーの取得
-        $expected_order_array = $service->getExpectedOrderArray();
-                
-        $gameOption = [
-            'date' =>  "04/01",
-            "dayName" => "金", 
-            "startTime" => "18:00",
-            "place" => "京セラドーム",
-            "opponent" => "楽天",
-        ];
+        $expected_order_array = $service->getExpectedOrderArray($game_option['id']);
+        if (empty($expected_order_array)) {
+            return view('game_detail.empty_data', compact('order_table_items', 'game_option', 'expected_order_array'));
+        }
 
         return view('game_detail.index', compact('order_table_items', 'game_option', 'expected_order_array'));
     }
 
     public function create(Request $request) 
     {
+        $request_params = $request->all();
+        $dating = $request_params['dating'];
+        $service = new GameDetailService();
+        $game_option = $service->getGameDetailArray($dating);
+        $game_option['manth'] = substr($game_option['dating'], 5, 2);
+        $game_option['day'] = substr($game_option['dating'], 8, 2);
+        if ($game_option['manth'][0] === '0') {
+            $game_option['manth'] = $game_option['day'][1];
+        }
+        if ($game_option['day'][0] === '0') {
+            $game_option['day'] = $game_option['day'][1];
+        }
+
         $mst_member = new MstMember();
         $members = $mst_member->get(['id', 'member_name', 'back_number'])->toArray();
 
-        return view('game_detail.create', compact('members'));
+        return view('game_detail.create', compact('members', 'game_option'));
     }
 
     public function store(Request $request) 
     {
+        $request_params = $request->all();
+
+        $dating_only_num = str_replace('-', '', $request_params['dating']);
+        $request_params['dating_only_num'] = $dating_only_num;
+
         $service = new GameDetailStoreService();
-        $result = $service->store($request->all());
-        dd($request->all());
-        return view('game_detail.create');
+        $result = $service->store($request_params);
+        
+        return redirect()->route('baseball.game_detail', ['dating' => $dating_only_num]);
     }
 }

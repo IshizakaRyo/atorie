@@ -31,6 +31,13 @@ class ExpectedPosition extends Model
         'pitchar',
         'cathcar',
         'first_baseman',
+        'secound_baseman',
+        'third_baseman',
+        'shortstop',
+        'left_fielder',
+        'center_fielder',
+        'right_fielder',
+        'designated_hitter'
     ];
     
     public function mst_member()

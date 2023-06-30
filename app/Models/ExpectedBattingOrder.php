@@ -13,10 +13,17 @@ class ExpectedBattingOrder extends Model
 
     protected $fillable = [
         'user_id',
+        'user_name',
         'expectation_id',
         'game_detail_id',
-        'mst_members_id',
-        'member_posistion',
-        'batting_order',
+        'first_hitter',
+        'secound_hitter',
+        'third_hitter',
+        'fourth_hitter',
+        'fifth_hitter',
+        'sixth_hitter',
+        'seventh_hitter',
+        'eight_hitter',
+        'ninth_hitter',
     ];    
 }

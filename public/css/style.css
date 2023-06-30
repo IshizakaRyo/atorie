@@ -1,19 +1,45 @@
+table tbody{
+    /* background-color: aqua; */
+}
+.orderHead {
+    height: 16px;
+    width: 180px;
+    border: 1px black solid;
+    border: double;
+}
+.orderRecord:first-child {
+    border-top: double;
+}
 .orderRecord {
     /* background-color: bisque; */
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 32px;
-    width: 160px;
-    padding: 10px;
-
+    width: 196px;
+    /* padding: 10px; */
+    border-bottom: 1px black solid;
+    border-left: double;
+    border-right: double;
 }
 .orderNum {
     text-align: center;
     width: 32px;
+    border-right: 1px black solid;
+    padding: 4px;
     /* background-color: blueviolet; */
 }
 .memberName {
     /* background-color: aqua; */
     width: 100px;
     text-align: center;
+    /* margin-top: 3px; */
+    /* border: 1px black solid; */
+}
+.memberPostion {
+    /* background-color: cadetblue; */
+    width: 32px;
+    text-align: center;
+    border-left: 1px black solid;
+    padding: 4px;
 }
